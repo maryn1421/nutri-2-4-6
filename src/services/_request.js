@@ -2,7 +2,7 @@ const https = require('https');
 const urllib = require('url');
 
 
-var request = {
+const request = {
 
     ajax: function(type,url,data,headers){
         return new Promise((resolv,reject) =>{
@@ -13,16 +13,16 @@ var request = {
                 headers['cache-control']    = "no-cache",
                 type = type.toUpperCase();
             data = JSON.stringify(data);
-            var options = {
+            const options = {
                 hostname: endpoint.hostname,
                 port: 443,
                 path: endpoint.path,
                 method: type,
                 headers: headers,
 
-            }
+            };
 
-            var req = https.request(options, (resp) => {
+            const req = https.request(options, (resp) => {
                 let data = '';
 
                 resp.on('data', (chunk) => {
@@ -52,4 +52,4 @@ var request = {
         });
     }
 }
-module.exports = request;
+export default request;
